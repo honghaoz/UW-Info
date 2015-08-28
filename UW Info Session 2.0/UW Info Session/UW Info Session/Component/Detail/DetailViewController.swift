@@ -12,10 +12,14 @@ class DetailViewController: BaseViewController {
     
     var shouldHide: Bool = true
     
+    @IBOutlet weak var detailTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -24,15 +28,33 @@ class DetailViewController: BaseViewController {
     }
     
     
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    private func setupTableView() {
+        BaseInfoCell.registerInTableView(detailTableView)
+        DetailInfoCell.registerInTableView(detailTableView)
+        
+        detailTableView.delegate = self
+        detailTableView.dataSource = self
     }
-    */
+    
+}
+
+extension DetailViewController: UITableViewDataSource {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(BaseInfoCell.identifier()) as! BaseInfoCell
+        return cell
+    }
+}
+
+extension DetailViewController: UITableViewDelegate {
     
 }
 

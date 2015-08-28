@@ -14,7 +14,7 @@ class Client {
     static let sharedInstance = Client()
     let parser = InfoSessionSourceHTMLParser()
     
-    func updateFromSourceURLForYear(year: Int, month: Month) {
+    func updateFromSourceURLForYear(year: Int, month: Month, completion: (result: Bool) -> Void) {
         let sourceURL = String(format: infoSessionSourceURL, year, month.rawValue)
         log.info("Requesting: \(sourceURL)")
         
@@ -22,9 +22,11 @@ class Client {
             if let string = string {
                 log.debug("Get content successfully!")
                 self.parser.parserHTMLString(string)
+                
             } else {
                 log.error("Get content failed!")
             }
+            completion(result: Info.shareInstance.finishParsing)
         }
     }
 }

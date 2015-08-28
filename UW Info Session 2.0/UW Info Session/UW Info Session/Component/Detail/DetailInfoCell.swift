@@ -22,3 +22,18 @@ class DetailInfoCell: UITableViewCell {
     }
 
 }
+
+extension DetailInfoCell: TableViewInfo {
+    class func identifier() -> String {
+        return NSStringFromClass(DetailInfoCell.self)
+    }
+    
+    class func estimatedRowHeight() -> CGFloat {
+        return 60
+    }
+    
+    class func registerInTableView(tableView: UITableView) {
+        let cellNib = UINib(nibName: "DetailInfoCell", bundle: NSBundle(forClass: DetailInfoCell.self))
+        tableView.registerNib(cellNib, forCellReuseIdentifier: DetailInfoCell.identifier())
+    }
+}

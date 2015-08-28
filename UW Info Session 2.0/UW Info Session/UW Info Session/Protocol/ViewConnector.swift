@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+
+protocol ViewConnector {
+    func switchViewWithIdentifier(view: String, sender: Int)
+}

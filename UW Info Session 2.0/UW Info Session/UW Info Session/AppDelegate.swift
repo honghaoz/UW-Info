@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         setupAnalytics(application, launchOptions: launchOptions)
         
-//        log.logLevel = .Off
         log.showDateTime = false
         log.showLogLevel = false
         log.showFileName = false

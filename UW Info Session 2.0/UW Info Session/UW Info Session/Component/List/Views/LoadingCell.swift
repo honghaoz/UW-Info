@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ParsingTableViewCell: UITableViewCell {
+class LoadingCell: UITableViewCell {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        activityIndicator.startAnimating()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -21,4 +24,20 @@ class ParsingTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+
+extension LoadingCell: TableViewInfo {
+    class func identifier() -> String {
+        return NSStringFromClass(LoadingCell.self)
+    }
+    
+    class func estimatedRowHeight() -> CGFloat {
+        return 100
+    }
+    
+    class func registerInTableView(tableView: UITableView) {
+        let cellNib = UINib(nibName: "LoadingCell", bundle: NSBundle(forClass: LoadingCell.self))
+        tableView.registerNib(cellNib, forCellReuseIdentifier: LoadingCell.identifier())
+    }
 }
