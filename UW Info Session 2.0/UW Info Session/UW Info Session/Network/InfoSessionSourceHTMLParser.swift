@@ -57,31 +57,31 @@ struct InfoSessionSourceHTMLParser {
     }
     
     private func processTrSessionGroupToDict(trSession: [JiNode]) -> [[String: String]] {
-        var resultunit = [[String: String]]()
+        var resultUnit = [[String: String]]()
         var unit = InfoSessionUnit()
         
         var webSiteIndex: Int?
         for (index, tr) in enumerate(trSession) {
             if let firstString = tr.firstChild?.content?.trimmed() where firstString.hasPrefix("\(kEmployer):") {
                 let secondString = tr.firstChild?.nextSibling?.content?.trimmed()
-                resultunit.append([kEmployer: secondString ?? "null"])
+                resultUnit.append([kEmployer: secondString ?? "null"])
                 unit.employer = secondString!
             } else if let firstString = tr.firstChild?.content?.trimmed() where firstString.hasPrefix("\(kDate):") {
                 let secondString = tr.firstChild?.nextSibling?.content?.trimmed()
-                resultunit.append([kDate: secondString ?? "null"])
+                resultUnit.append([kDate: secondString ?? "null"])
                 unit.date = secondString!
             } else if let firstString = tr.firstChild?.content?.trimmed() where firstString.hasPrefix("\(kTime):") {
                 let secondString = tr.firstChild?.nextSibling?.content?.trimmed()
-                resultunit.append([kTime: secondString ?? "null"])
+                resultUnit.append([kTime: secondString ?? "null"])
                 unit.time = secondString!
             } else if let firstString = tr.firstChild?.content?.trimmed() where firstString.hasPrefix("\(kLocation):") {
                 let secondString = tr.firstChild?.nextSibling?.content?.trimmed()
-                resultunit.append([kLocation: secondString ?? "null"])
+                resultUnit.append([kLocation: secondString ?? "null"])
                 unit.location = secondString!
             } else if let firstString = tr.firstChild?.content?.trimmed() where firstString.hasPrefix("\(kWebSite):") {
                 var secondString = tr.firstChild?.nextSibling?.content?.trimmed()
                 if secondString == "http://" { secondString = "" }
-                resultunit.append([kWebSite: secondString ?? "null"])
+                resultUnit.append([kWebSite: secondString ?? "null"])
                 webSiteIndex = index
                 unit.website = secondString!
             }
@@ -93,8 +93,8 @@ struct InfoSessionSourceHTMLParser {
                         let levelString = (components[0].hasPrefix("For ") ? components[0].stringByReplacingOccurrencesOfString("For ", withString: "", options: NSStringCompareOptions(0), range: nil) : components[0]).trimmed()
                         let studentString = components[1].replaceMatches(", ", withString: ",", ignoreCase: true)?.stringByReplacingOccurrencesOfString(",", withString: ", ", options: NSStringCompareOptions(0), range: nil).trimmed() ?? ""
                         let programString = components[2].trimmed()
-                        resultunit.append([kAudience: "\(levelString) \(studentString)".trimmed()])
-                        resultunit.append([kProgram: programString])
+                        resultUnit.append([kAudience: "\(levelString) \(studentString)".trimmed()])
+                        resultUnit.append([kProgram: programString])
                         unit.audience = "\(levelString) \(studentString)".trimmed()
                         unit.program = programString
                     } else {
@@ -107,7 +107,7 @@ struct InfoSessionSourceHTMLParser {
                 // Description
                 if let rawContent = tr.xPath("./td/i").first?.rawContent?.replaceMatches("<(i|/i)>", withString: "", ignoreCase: false) {
                     let removedBrString = rawContent.stringByReplacingOccurrencesOfString("<br>", withString: "\n", options: NSStringCompareOptions(0), range: nil)
-                    resultunit.append([kDescription: removedBrString])
+                    resultUnit.append([kDescription: removedBrString])
                     unit.description = removedBrString
                 } else {
                     log.error("Get raw text for Audience failed.")
@@ -119,7 +119,7 @@ struct InfoSessionSourceHTMLParser {
             Info.shareInstance.InfoSessions.append(unit)
         }
         
-        return resultunit
+        return resultUnit
     }
 }
 

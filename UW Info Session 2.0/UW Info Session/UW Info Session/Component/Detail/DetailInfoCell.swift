@@ -10,6 +10,10 @@ import UIKit
 
 class DetailInfoCell: UITableViewCell {
 
+    @IBOutlet weak var keyLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -37,3 +41,6 @@ extension DetailInfoCell: TableViewInfo {
         tableView.registerNib(cellNib, forCellReuseIdentifier: DetailInfoCell.identifier())
     }
 }
+
+
+

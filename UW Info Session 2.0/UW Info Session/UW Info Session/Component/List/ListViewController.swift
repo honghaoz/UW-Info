@@ -16,14 +16,12 @@ class ListViewController: BaseViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         setupTableView()
         title = "Info Session"
     }
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		
         Locator.clinet.updateFromSourceURLForYear(2015, month: .Jul){
             (result: Bool) in
             println("got back: \(result)")
@@ -43,11 +41,9 @@ class ListViewController: BaseViewController {
 		
 		listTableView.rowHeight = UITableViewAutomaticDimension
 	}
-
 }
 
 extension ListViewController: UITableViewDataSource {
-    
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
 	}
@@ -61,7 +57,6 @@ extension ListViewController: UITableViewDataSource {
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         if Info.shareInstance.finishParsing {
             
             let cell = tableView.dequeueReusableCellWithIdentifier(ListCell.identifier()) as! ListCell
@@ -75,7 +70,6 @@ extension ListViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCellWithIdentifier(LoadingCell.identifier()) as! LoadingCell
             return cell
         }
-		
 	}
 }
 
@@ -94,17 +88,15 @@ extension ListViewController: UITableViewDelegate {
     // MARK: - Selections
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+    
         Locator.detailViewController.shouldHide = false
         
-        // https://www.shinobicontrols.com/blog/ios8-day-by-day-day-18-uisplitviewcontroller
+        let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+        detailVC.infoSession = MonthlyInfoSessions[indexPath.row]
         
-        Locator.splitViewController.showDetailViewController(Locator.detailNavigationController, sender: self)
+        Locator.splitViewController.showDetailViewController(detailVC, sender: self)
     }
-    
-    //MARK: - for show detail view controller
-    
-    
+
 }
 
 extension ListViewController: Analytics {

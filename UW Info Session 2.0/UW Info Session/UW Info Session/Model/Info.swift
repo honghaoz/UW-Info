@@ -28,5 +28,4 @@ class Info {
     
     var finishParsing = false
     
-
 }
