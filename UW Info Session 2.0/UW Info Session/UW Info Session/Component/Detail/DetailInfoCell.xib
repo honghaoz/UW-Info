@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,25 +13,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQ3-wV-A0P">
-                        <rect key="frame" x="8" y="8" width="30" height="21"/>
+                        <rect key="frame" x="8" y="8" width="304" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="detail" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnJ-DD-TAP">
-                        <rect key="frame" x="8" y="45" width="304" height="46"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="detail" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnJ-DD-TAP">
+                        <rect key="frame" x="16" y="45" width="292" height="46"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gnJ-DD-TAP" firstAttribute="bottom" secondItem="cYr-Dn-VQy" secondAttribute="bottomMargin" id="GRt-sA-YPi"/>
-                    <constraint firstItem="hQ3-wV-A0P" firstAttribute="leading" secondItem="cYr-Dn-VQy" secondAttribute="leadingMargin" id="Tzf-W2-VCN"/>
-                    <constraint firstItem="hQ3-wV-A0P" firstAttribute="top" secondItem="cYr-Dn-VQy" secondAttribute="topMargin" id="Ut0-eT-gYN"/>
-                    <constraint firstItem="gnJ-DD-TAP" firstAttribute="leading" secondItem="cYr-Dn-VQy" secondAttribute="leadingMargin" id="Vk6-eQ-Xdi"/>
-                    <constraint firstItem="gnJ-DD-TAP" firstAttribute="trailing" secondItem="cYr-Dn-VQy" secondAttribute="trailingMargin" id="egu-UP-uji"/>
-                    <constraint firstItem="gnJ-DD-TAP" firstAttribute="top" secondItem="hQ3-wV-A0P" secondAttribute="bottom" constant="16" id="uDq-0S-1dX"/>
+                    <constraint firstItem="gnJ-DD-TAP" firstAttribute="leading" secondItem="cYr-Dn-VQy" secondAttribute="leading" constant="16" id="2Ve-s8-OYB"/>
+                    <constraint firstAttribute="trailing" secondItem="hQ3-wV-A0P" secondAttribute="trailing" constant="8" id="3cM-40-Km3"/>
+                    <constraint firstItem="gnJ-DD-TAP" firstAttribute="top" secondItem="hQ3-wV-A0P" secondAttribute="bottom" constant="16" id="Nnt-cQ-7FZ"/>
+                    <constraint firstAttribute="trailing" secondItem="gnJ-DD-TAP" secondAttribute="trailing" constant="12" id="iPN-cM-xf6"/>
+                    <constraint firstItem="hQ3-wV-A0P" firstAttribute="leading" secondItem="cYr-Dn-VQy" secondAttribute="leading" constant="8" id="mR3-ex-gzL"/>
+                    <constraint firstItem="hQ3-wV-A0P" firstAttribute="top" secondItem="cYr-Dn-VQy" secondAttribute="top" constant="8" id="stv-3c-V4P"/>
+                    <constraint firstAttribute="bottom" secondItem="gnJ-DD-TAP" secondAttribute="bottom" constant="9" id="xLd-jX-l0U"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

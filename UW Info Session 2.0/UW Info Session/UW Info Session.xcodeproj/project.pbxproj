@@ -8,11 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		BBB40CEB06A059F6D7086991 /* Pods_UW_Info_Session.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20655DB8C5744C66C864499B /* Pods_UW_Info_Session.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		BE0FEC531B9DE9DD00A53303 /* RSVPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FEC521B9DE9DD00A53303 /* RSVPCell.swift */; };
+		BE0FEC551B9DE9E900A53303 /* RSVPCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE0FEC541B9DE9E900A53303 /* RSVPCell.xib */; };
 		BEC436901B8CD41200E32F35 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC4368F1B8CD41200E32F35 /* Info.swift */; };
 		BED4DA081B9938F30053E8E0 /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED4DA071B9938F30053E8E0 /* ReminderCell.swift */; };
 		BED4DA0A1B9939020053E8E0 /* ReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BED4DA091B9939020053E8E0 /* ReminderCell.xib */; };
+		BEDE786D1B9B0EE50075C830 /* DescriptionInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDE786C1B9B0EE50075C830 /* DescriptionInfoCell.swift */; };
+		BEDE786F1B9B0F080075C830 /* DescriptionInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEDE786E1B9B0F080075C830 /* DescriptionInfoCell.xib */; };
 		BEE95C8A1B8E481D00813C35 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE95C891B8E481D00813C35 /* LoadingCell.swift */; };
 		BEE95C8C1B8E483500813C35 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE95C8B1B8E483500813C35 /* LoadingCell.xib */; };
+		BEEC07D31B9D02F500321C8D /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC07D21B9D02F500321C8D /* NoteCell.swift */; };
+		BEEC07D51B9D03A200321C8D /* NoteCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC07D41B9D03A200321C8D /* NoteCellExtension.swift */; };
+		BEEC07D71B9D041A00321C8D /* NoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEEC07D61B9D041A00321C8D /* NoteCell.xib */; };
+		BEEC07DA1B9D1BDD00321C8D /* UWMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC07D91B9D1BDD00321C8D /* UWMapViewController.swift */; };
+		BEEC07DE1B9D46A900321C8D /* map_colour300.png in Resources */ = {isa = PBXBuildFile; fileRef = BEEC07DD1B9D46A900321C8D /* map_colour300.png */; };
 		BEF08F021B8FD3D20075AF96 /* BaseInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEF08F011B8FD3D20075AF96 /* BaseInfoCell.xib */; };
 		BEF08F041B8FD3E20075AF96 /* DetailInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEF08F031B8FD3E20075AF96 /* DetailInfoCell.xib */; };
 		BEF08F061B8FD3FB0075AF96 /* BaseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF08F051B8FD3FB0075AF96 /* BaseInfoCell.swift */; };
@@ -67,11 +76,20 @@
 		20655DB8C5744C66C864499B /* Pods_UW_Info_Session.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UW_Info_Session.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B2AC351EACCC9067A5180DB /* Pods-UW Info Session.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Info Session.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UW Info Session/Pods-UW Info Session.debug.xcconfig"; sourceTree = "<group>"; };
 		B58649F9AEDE409BCA159849 /* Pods-UW Info Session.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Info Session.release.xcconfig"; path = "Pods/Target Support Files/Pods-UW Info Session/Pods-UW Info Session.release.xcconfig"; sourceTree = "<group>"; };
+		BE0FEC521B9DE9DD00A53303 /* RSVPCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSVPCell.swift; sourceTree = "<group>"; };
+		BE0FEC541B9DE9E900A53303 /* RSVPCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSVPCell.xib; sourceTree = "<group>"; };
 		BEC4368F1B8CD41200E32F35 /* Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		BED4DA071B9938F30053E8E0 /* ReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
 		BED4DA091B9939020053E8E0 /* ReminderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReminderCell.xib; sourceTree = "<group>"; };
+		BEDE786C1B9B0EE50075C830 /* DescriptionInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionInfoCell.swift; sourceTree = "<group>"; };
+		BEDE786E1B9B0F080075C830 /* DescriptionInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescriptionInfoCell.xib; sourceTree = "<group>"; };
 		BEE95C891B8E481D00813C35 /* LoadingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		BEE95C8B1B8E483500813C35 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		BEEC07D21B9D02F500321C8D /* NoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
+		BEEC07D41B9D03A200321C8D /* NoteCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCellExtension.swift; sourceTree = "<group>"; };
+		BEEC07D61B9D041A00321C8D /* NoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteCell.xib; sourceTree = "<group>"; };
+		BEEC07D91B9D1BDD00321C8D /* UWMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UWMapViewController.swift; sourceTree = "<group>"; };
+		BEEC07DD1B9D46A900321C8D /* map_colour300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_colour300.png; path = Resource/map_colour300.png; sourceTree = SOURCE_ROOT; };
 		BEF08F011B8FD3D20075AF96 /* BaseInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseInfoCell.xib; sourceTree = "<group>"; };
 		BEF08F031B8FD3E20075AF96 /* DetailInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailInfoCell.xib; sourceTree = "<group>"; };
 		BEF08F051B8FD3FB0075AF96 /* BaseInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInfoCell.swift; sourceTree = "<group>"; };
@@ -154,6 +172,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BEEC07D81B9D1BA200321C8D /* Map of UW */ = {
+			isa = PBXGroup;
+			children = (
+				BEEC07D91B9D1BDD00321C8D /* UWMapViewController.swift */,
+				BEEC07DD1B9D46A900321C8D /* map_colour300.png */,
+			);
+			name = "Map of UW";
+			path = ../List;
+			sourceTree = "<group>";
+		};
 		BEF08F001B8FD11A0075AF96 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +191,13 @@
 				BEF08F031B8FD3E20075AF96 /* DetailInfoCell.xib */,
 				BED4DA071B9938F30053E8E0 /* ReminderCell.swift */,
 				BED4DA091B9939020053E8E0 /* ReminderCell.xib */,
+				BEDE786C1B9B0EE50075C830 /* DescriptionInfoCell.swift */,
+				BEDE786E1B9B0F080075C830 /* DescriptionInfoCell.xib */,
+				BEEC07D21B9D02F500321C8D /* NoteCell.swift */,
+				BEEC07D41B9D03A200321C8D /* NoteCellExtension.swift */,
+				BEEC07D61B9D041A00321C8D /* NoteCell.xib */,
+				BE0FEC521B9DE9DD00A53303 /* RSVPCell.swift */,
+				BE0FEC541B9DE9E900A53303 /* RSVPCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -251,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				E4BF8BBD1B7A3F790016A61E /* DetailViewController.swift */,
+				BEEC07D81B9D1BA200321C8D /* Map of UW */,
 				BEF08F001B8FD11A0075AF96 /* Views */,
 			);
 			path = Detail;
@@ -430,8 +466,12 @@
 				E4F3B84B1B798704006E1BF9 /* LaunchScreen.xib in Resources */,
 				E4F3B8481B798704006E1BF9 /* Images.xcassets in Resources */,
 				BED4DA0A1B9939020053E8E0 /* ReminderCell.xib in Resources */,
+				BE0FEC551B9DE9E900A53303 /* RSVPCell.xib in Resources */,
+				BEDE786F1B9B0F080075C830 /* DescriptionInfoCell.xib in Resources */,
 				BEE95C8C1B8E483500813C35 /* LoadingCell.xib in Resources */,
 				BEF08F041B8FD3E20075AF96 /* DetailInfoCell.xib in Resources */,
+				BEEC07DE1B9D46A900321C8D /* map_colour300.png in Resources */,
+				BEEC07D71B9D041A00321C8D /* NoteCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,12 +538,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E43925F41B7C276500616CDE /* InfoSessionSourceHTMLParser.swift in Sources */,
+				BEDE786D1B9B0EE50075C830 /* DescriptionInfoCell.swift in Sources */,
 				E43926021B7C602700616CDE /* Analytics.swift in Sources */,
+				BEEC07D31B9D02F500321C8D /* NoteCell.swift in Sources */,
 				E4F3B8431B798704006E1BF9 /* RootViewController.swift in Sources */,
+				BEEC07DA1B9D1BDD00321C8D /* UWMapViewController.swift in Sources */,
 				E4BA2C991B7EF9790057E461 /* Range.swift in Sources */,
 				E4BA2C961B7EF9790057E461 /* Int.swift in Sources */,
 				E4F3B8651B798E3A006E1BF9 /* Locator.swift in Sources */,
 				E4F3B8411B798704006E1BF9 /* UW_Info_Session.xcdatamodeld in Sources */,
+				BE0FEC531B9DE9DD00A53303 /* RSVPCell.swift in Sources */,
 				E4BA2C971B7EF9790057E461 /* NSArray.swift in Sources */,
 				E43D1A481B7AF80F006BA418 /* ListCell.swift in Sources */,
 				E43925FE1B7C536500616CDE /* BaseViewController.swift in Sources */,
@@ -529,6 +573,7 @@
 				E4F3B83E1B798704006E1BF9 /* AppDelegate.swift in Sources */,
 				E4BA2C921B7EF9790057E461 /* Double.swift in Sources */,
 				E43925F21B7C168900616CDE /* Client.swift in Sources */,
+				BEEC07D51B9D03A200321C8D /* NoteCellExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

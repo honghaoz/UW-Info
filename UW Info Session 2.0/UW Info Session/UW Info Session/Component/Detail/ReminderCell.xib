@@ -32,7 +32,7 @@
                     <constraint firstItem="lMS-VL-82y" firstAttribute="leading" secondItem="Gk5-Xj-xAq" secondAttribute="leadingMargin" id="yU2-Wb-rEt"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="439" y="263"/>
+            <point key="canvasLocation" x="630" y="357"/>
         </tableViewCell>
     </objects>
 </document>
