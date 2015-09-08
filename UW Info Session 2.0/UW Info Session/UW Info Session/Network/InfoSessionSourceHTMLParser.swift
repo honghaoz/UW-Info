@@ -50,7 +50,7 @@ struct InfoSessionSourceHTMLParser {
             
             // Process each session group to a dictionary
             let json = JSON(trSessionGroups.map { self.processTrSessionGroupToDict($0) })
-            log.debug(json)
+//            log.debug(json)
             
             Info.shareInstance.finishParsing = true
         }

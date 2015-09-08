@@ -150,6 +150,41 @@
             </objects>
             <point key="canvasLocation" x="1106" y="2509"/>
         </scene>
+        <!--Info Session Website View Controller-->
+        <scene sceneID="5O1-6U-aeD">
+            <objects>
+                <viewController storyboardIdentifier="InfoSessionWebViewController" id="VmG-hJ-D9N" customClass="InfoSessionWebsiteViewController" customModule="UW_Info_Session" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0Zy-rZ-b1a"/>
+                        <viewControllerLayoutGuide type="bottom" id="B3S-4x-kR0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="45i-Z6-p5W">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2jS-8w-0Uj">
+                                <rect key="frame" x="0.0" y="64" width="600" height="2"/>
+                                <color key="progressTintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2jS-8w-0Uj" secondAttribute="trailing" id="FL8-P9-VWh"/>
+                            <constraint firstItem="2jS-8w-0Uj" firstAttribute="leading" secondItem="45i-Z6-p5W" secondAttribute="leading" id="Z2E-Z6-zjG"/>
+                            <constraint firstItem="2jS-8w-0Uj" firstAttribute="top" secondItem="0Zy-rZ-b1a" secondAttribute="bottom" id="jsS-eG-Nzi"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="PtA-Di-IHW"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="progressView" destination="2jS-8w-0Uj" id="kdw-Ql-ubM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O0C-fK-9eP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1106" y="3247"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ngw-9D-Jao">
             <objects>
@@ -185,6 +220,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ad-tM-fsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="426" y="2509"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kyB-Q4-5ZJ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iph-Ho-xIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="guV-Fq-jr7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tjh-RN-OPC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VmG-hJ-D9N" kind="relationship" relationship="rootViewController" id="xhH-98-D8S"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="426" y="3247"/>
         </scene>
     </scenes>
 </document>

@@ -24,6 +24,7 @@ class DetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        println("in detail view now, the website url is \(infoSession?.website)")
 //        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
 //        view.addGestureRecognizer(tap)
     }
@@ -48,7 +49,7 @@ class DetailViewController: BaseViewController {
         detailTableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    private func DismissKeyboard(){
+    func DismissKeyboard(){
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
@@ -141,6 +142,13 @@ extension DetailViewController: UITableViewDelegate {
         if indexPath.section == 0 && indexPath.row == 3 {
             let mapVC = self.storyboard?.instantiateViewControllerWithIdentifier("UWMapNavigationController") as! UINavigationController
             self.showViewController(mapVC, sender: self)
+        }
+        
+        if indexPath.section == 2 && indexPath.row == 0 && infoSession?.website != "" {
+            let webVC = self.storyboard?.instantiateViewControllerWithIdentifier("InfoSessionWebViewController") as! InfoSessionWebsiteViewController
+            webVC.websiteName = infoSession?.employer
+            webVC.websiteURLString = infoSession?.website
+            self.navigationController?.showViewController(webVC, sender: self)
         }
     }
     

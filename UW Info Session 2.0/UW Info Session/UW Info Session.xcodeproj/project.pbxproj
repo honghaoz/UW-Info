@@ -10,6 +10,7 @@
 		BBB40CEB06A059F6D7086991 /* Pods_UW_Info_Session.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20655DB8C5744C66C864499B /* Pods_UW_Info_Session.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BE0FEC531B9DE9DD00A53303 /* RSVPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FEC521B9DE9DD00A53303 /* RSVPCell.swift */; };
 		BE0FEC551B9DE9E900A53303 /* RSVPCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE0FEC541B9DE9E900A53303 /* RSVPCell.xib */; };
+		BE0FEC861B9E84AB00A53303 /* InfoSessionWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FEC851B9E84AB00A53303 /* InfoSessionWebsiteViewController.swift */; };
 		BEC436901B8CD41200E32F35 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC4368F1B8CD41200E32F35 /* Info.swift */; };
 		BED4DA081B9938F30053E8E0 /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED4DA071B9938F30053E8E0 /* ReminderCell.swift */; };
 		BED4DA0A1B9939020053E8E0 /* ReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BED4DA091B9939020053E8E0 /* ReminderCell.xib */; };
@@ -78,6 +79,7 @@
 		B58649F9AEDE409BCA159849 /* Pods-UW Info Session.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UW Info Session.release.xcconfig"; path = "Pods/Target Support Files/Pods-UW Info Session/Pods-UW Info Session.release.xcconfig"; sourceTree = "<group>"; };
 		BE0FEC521B9DE9DD00A53303 /* RSVPCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSVPCell.swift; sourceTree = "<group>"; };
 		BE0FEC541B9DE9E900A53303 /* RSVPCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSVPCell.xib; sourceTree = "<group>"; };
+		BE0FEC851B9E84AB00A53303 /* InfoSessionWebsiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoSessionWebsiteViewController.swift; sourceTree = "<group>"; };
 		BEC4368F1B8CD41200E32F35 /* Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		BED4DA071B9938F30053E8E0 /* ReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
 		BED4DA091B9939020053E8E0 /* ReminderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReminderCell.xib; sourceTree = "<group>"; };
@@ -170,6 +172,15 @@
 				20655DB8C5744C66C864499B /* Pods_UW_Info_Session.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE0FEC841B9E847200A53303 /* InfoSessionWebsiteView */ = {
+			isa = PBXGroup;
+			children = (
+				BE0FEC851B9E84AB00A53303 /* InfoSessionWebsiteViewController.swift */,
+			);
+			name = InfoSessionWebsiteView;
+			path = ../List;
 			sourceTree = "<group>";
 		};
 		BEEC07D81B9D1BA200321C8D /* Map of UW */ = {
@@ -286,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				E4BF8BBD1B7A3F790016A61E /* DetailViewController.swift */,
+				BE0FEC841B9E847200A53303 /* InfoSessionWebsiteView */,
 				BEEC07D81B9D1BA200321C8D /* Map of UW */,
 				BEF08F001B8FD11A0075AF96 /* Views */,
 			);
@@ -548,6 +560,7 @@
 				E4F3B8651B798E3A006E1BF9 /* Locator.swift in Sources */,
 				E4F3B8411B798704006E1BF9 /* UW_Info_Session.xcdatamodeld in Sources */,
 				BE0FEC531B9DE9DD00A53303 /* RSVPCell.swift in Sources */,
+				BE0FEC861B9E84AB00A53303 /* InfoSessionWebsiteViewController.swift in Sources */,
 				E4BA2C971B7EF9790057E461 /* NSArray.swift in Sources */,
 				E43D1A481B7AF80F006BA418 /* ListCell.swift in Sources */,
 				E43925FE1B7C536500616CDE /* BaseViewController.swift in Sources */,
