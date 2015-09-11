@@ -8,8 +8,16 @@
 
 import UIKit
 
+protocol ProviderSwitchToDetailViewDelegate: class {
+    func isSwitchOn(controller: ReminderCell, switchStatus status: Bool)
+}
+
 class ReminderCell: UITableViewCell {
 
+    @IBOutlet weak var reminderSwith: UISwitch!
+    
+    weak var switchDelegate: ProviderSwitchToDetailViewDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,8 +25,11 @@ class ReminderCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
+    }
+    
+    @IBAction func changeSwitchStatus() {
+        switchDelegate?.isSwitchOn(self, switchStatus: reminderSwith.on)
     }
 
 }

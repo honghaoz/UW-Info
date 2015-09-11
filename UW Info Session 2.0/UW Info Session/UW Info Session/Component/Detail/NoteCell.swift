@@ -12,7 +12,6 @@ class NoteCell: UITableViewCell {
     
     @IBOutlet var textView: UITextView!
     
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -49,6 +48,7 @@ class NoteCell: UITableViewCell {
         // Configure the view for the selected state
         if selected {
             textView?.becomeFirstResponder()
+           
         } else {
             textView?.resignFirstResponder()
         }

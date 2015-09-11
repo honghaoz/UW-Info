@@ -55,10 +55,20 @@ class InfoSessionWebsiteViewController: UIViewController, WKNavigationDelegate {
         forwardBarButtonItem.enabled = false
         backwardBarButtonItem.enabled = false
         
-        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
-        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         progressView.setProgress(0.0, animated: false)
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
+        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        webView.removeObserver(self, forKeyPath: "loading")
+        webView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
     
     //MARK: WKNav delegate
