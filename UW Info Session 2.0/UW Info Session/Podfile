@@ -23,3 +23,12 @@ target 'UW Info SessionTests' do
 
 end
 
+target 'InfoSessionTodayWidget' do
+    
+    pod 'Ji','~> 1.1'
+    pod 'Alamofire', '~> 1.3'
+    pod 'SwiftyJSON', '~> 2.2.1'
+    pod 'Loggerithm'
+
+end
+

@@ -22,7 +22,7 @@ class ListViewController: BaseViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        Locator.clinet.updateFromSourceURLForYear(2015, month: .Jul){
+        Locator.clinet.updateFromSourceURLForYear(2015, month: .Sep){
             (result: Bool) in
             println("got back: \(result)")
             

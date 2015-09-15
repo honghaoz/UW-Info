@@ -16,7 +16,6 @@ extension UITableViewCell {
             while !(table is UITableView) && table != nil {
                 table = table?.superview
             }
-            
             return table as? UITableView
         }
     }

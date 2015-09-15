@@ -19,7 +19,6 @@ class DetailViewController: BaseViewController, ProviderSwitchToDetailViewDelega
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setupTableView()
         registerForKeyboardNotifications()
     }
     
@@ -29,6 +28,9 @@ class DetailViewController: BaseViewController, ProviderSwitchToDetailViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupTableView()
+        
         var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
     }
@@ -83,16 +85,26 @@ class DetailViewController: BaseViewController, ProviderSwitchToDetailViewDelega
     func isSwitchOn(controller: ReminderCell, switchStatus status: Bool) {
         alertVisible = status
         if alertVisible {
-            let indexPathAlertRow = NSIndexPath(forRow: 1, inSection: 1)
-            detailTableView.beginUpdates()
-            detailTableView.insertRowsAtIndexPaths([indexPathAlertRow], withRowAnimation: .Fade)
-            detailTableView.endUpdates()
+            showAlertCell()
+            alertVisible = false
         }else {
-            let indexPathAlertRow = NSIndexPath(forRow: 1, inSection: 1)
-            detailTableView.beginUpdates()
-            detailTableView.deleteRowsAtIndexPaths([indexPathAlertRow], withRowAnimation: .Fade)
-            detailTableView.endUpdates()
+            hideAlertCell()
+            alertVisible = true
         }
+    }
+    
+    private func showAlertCell() {
+        let indexPathAlertRow = NSIndexPath(forRow: 1, inSection: 1)
+        detailTableView.beginUpdates()
+        detailTableView.insertRowsAtIndexPaths([indexPathAlertRow], withRowAnimation: .Fade)
+        detailTableView.endUpdates()
+    }
+    
+    private func hideAlertCell() {
+        let indexPathAlertRow = NSIndexPath(forRow: 1, inSection: 1)
+        detailTableView.beginUpdates()
+        detailTableView.deleteRowsAtIndexPaths([indexPathAlertRow], withRowAnimation: .Fade)
+        detailTableView.endUpdates()
     }
 
 }
@@ -139,6 +151,7 @@ extension DetailViewController: UITableViewDataSource {
             case 3:
                 let locationCell = configureBaseCellUI(cell, key: "Location", value: infoSession?.location)
                 locationCell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                locationCell.selectionStyle = UITableViewCellSelectionStyle.Gray
                 return locationCell
             default:
                 rsvpCell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
@@ -157,6 +170,7 @@ extension DetailViewController: UITableViewDataSource {
             case 0:
                 let websiteCell = configureBaseCellUI(cell, key: "Website", value: infoSession?.website)
                 websiteCell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                websiteCell.selectionStyle = UITableViewCellSelectionStyle.Gray
                 return websiteCell
             case 1:
                 return configureBaseCellUI(cell, key: "Student", value: infoSession?.audience)
@@ -193,19 +207,17 @@ extension DetailViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 && indexPath.row == 3 {
+            
             let mapVC = self.storyboard?.instantiateViewControllerWithIdentifier("UWMapNavigationController") as! UINavigationController
             self.showViewController(mapVC, sender: self)
         }
         
         if indexPath.section == 2 && indexPath.row == 0 && infoSession?.website != "" {
             let webVC = self.storyboard?.instantiateViewControllerWithIdentifier("InfoSessionWebViewController") as! InfoSessionWebsiteViewController
+            
             webVC.websiteName = infoSession?.employer
             webVC.websiteURLString = infoSession?.website
             self.navigationController?.showViewController(webVC, sender: self)
-        }
-        
-        if indexPath.section == 1 && indexPath.row == 0 {
-            println()
         }
     }
     
