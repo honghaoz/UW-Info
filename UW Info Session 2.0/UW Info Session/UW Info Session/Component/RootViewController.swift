@@ -74,20 +74,28 @@ class RootViewController: BaseViewController {
         newSession.descriptions = "Dummy"
         newSession.rating = Float(4.2)
         
-        Locator.managedObjectContext.save(nil)
+        // adding error handling code according to swift 2 changes
+        do{
+            try Locator.managedObjectContext.save()
+        }catch {
+            print("fail to save in managedObjectContext")
+        }
         
         let request = NSFetchRequest(entityName: "Session")
-        let sessions = Locator.managedObjectContext.executeFetchRequest(request, error: nil) as! [Session]
-        
-        log.debug("Session count: \(sessions.count)")
-        log.debug("session[0]: \(sessions.first?.startTime)")
+        do{
+            let sessions = try Locator.managedObjectContext.executeFetchRequest(request) as! [Session]
+            log.debug("Session count: \(sessions.count)")
+            log.debug("session[0]: \(sessions.first?.startTime)")
+        }catch let error as NSError {
+            print("Fetch failed: \(error.localizedDescription)")
+        }
     }
     
     func displayContentViewController(viewController: UIViewController) {
         addChildViewController(viewController)
         currentSelectedViewController = viewController
         
-        viewController.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
         view.insertSubview(viewController.view, belowSubview: tabBar)
         
         // Full Size
@@ -101,7 +109,7 @@ class RootViewController: BaseViewController {
 }
 
 extension RootViewController: UISplitViewControllerDelegate {
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController!, ontoPrimaryViewController primaryViewController: UIViewController!) -> Bool {
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
         
         if let navigationController = secondaryViewController as? UINavigationController {
             if let detailViewController = navigationController.topViewController as? DetailViewController {
@@ -112,7 +120,7 @@ extension RootViewController: UISplitViewControllerDelegate {
         return true
     }
     
-    func splitViewController(splitViewController: UISplitViewController, separateSecondaryViewControllerFromPrimaryViewController primaryViewController: UIViewController!) -> UIViewController? {
+    func splitViewController(splitViewController: UISplitViewController, separateSecondaryViewControllerFromPrimaryViewController primaryViewController: UIViewController) -> UIViewController? {
         return Locator.detailNavigationController
     }
 }

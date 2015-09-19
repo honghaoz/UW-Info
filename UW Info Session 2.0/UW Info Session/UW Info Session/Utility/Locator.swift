@@ -57,7 +57,7 @@ class Locator {
     private lazy var _detailNavigationController: UINavigationController = {
         var controller = UIViewController.viewControllerInStoryboard("Root", viewControllerName: "DetailNavigationController") as! UINavigationController
         return controller
-        }()
+    }()
     
     class var detailNavigationController: UINavigationController {
         return sharedInstance._detailNavigationController

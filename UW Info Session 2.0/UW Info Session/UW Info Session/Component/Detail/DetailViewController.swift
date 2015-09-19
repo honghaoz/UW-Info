@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: BaseViewController, ProviderSwitchToDetailViewDelegate {
+class DetailViewController: BaseViewController, ProviderSwitchToDetailViewDelegate{
     
     var shouldHide: Bool = true
     
@@ -31,8 +31,12 @@ class DetailViewController: BaseViewController, ProviderSwitchToDetailViewDelega
         
         setupTableView()
         
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
-        view.addGestureRecognizer(tap)
+        detailTableView.delegate = self
+        detailTableView.dataSource = self
+        
+//        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+//        view.addGestureRecognizer(tap)
+//        tap.cancelsTouchesInView = false 
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,9 +51,6 @@ class DetailViewController: BaseViewController, ProviderSwitchToDetailViewDelega
         NoteCell.registerInTableView(detailTableView)
         RSVPCell.registerInTableView(detailTableView)
         AlertCell.registerInTableView(detailTableView)
-        
-        detailTableView.delegate = self
-        detailTableView.dataSource = self
         
         detailTableView.rowHeight = UITableViewAutomaticDimension
     }
@@ -137,8 +138,10 @@ extension DetailViewController: UITableViewDataSource {
         let reminderCell = tableView.dequeueReusableCellWithIdentifier(ReminderCell.identifier()) as! ReminderCell
         let noteCell = tableView.dequeueReusableCellWithIdentifier(NoteCell.identifier()) as! NoteCell
         let rsvpCell = tableView.dequeueReusableCellWithIdentifier(RSVPCell.identifier()) as! RSVPCell
-        var section = indexPath.section
-        var row = indexPath.row
+        let section = indexPath.section
+        let row = indexPath.row
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        detailCell.selectionStyle = UITableViewCellSelectionStyle.None
         
         if section == 0 {
             switch row {
@@ -206,24 +209,22 @@ extension DetailViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 && indexPath.row == 3 {
-            
-            let mapVC = self.storyboard?.instantiateViewControllerWithIdentifier("UWMapNavigationController") as! UINavigationController
-            self.showViewController(mapVC, sender: self)
+        if indexPath.section == 0 && indexPath.row == 3 && infoSession?.location != "" {
+            let mapVC = self.storyboard?.instantiateViewControllerWithIdentifier("UWMaplViewController") as! UWMapViewController
+            mapVC.infoSessionLocation = infoSession?.location
+            self.navigationController?.showViewController(mapVC, sender: mapVC)
         }
         
         if indexPath.section == 2 && indexPath.row == 0 && infoSession?.website != "" {
             let webVC = self.storyboard?.instantiateViewControllerWithIdentifier("InfoSessionWebViewController") as! InfoSessionWebsiteViewController
-            
             webVC.websiteName = infoSession?.employer
             webVC.websiteURLString = infoSession?.website
-            self.navigationController?.showViewController(webVC, sender: self)
+            self.navigationController?.showViewController(webVC, sender: webVC)
         }
     }
-    
 }
 
-extension DetailViewController: Analytics {
+extension DetailViewController {
     override func screenName() -> String? {
         return "Detail View"
     }

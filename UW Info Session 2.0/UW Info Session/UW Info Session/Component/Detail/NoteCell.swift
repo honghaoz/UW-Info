@@ -17,7 +17,7 @@ class NoteCell: UITableViewCell {
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     var textString: String {
@@ -60,7 +60,9 @@ extension NoteCell: UITextViewDelegate {
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         let oldText: NSString = textView.text
-        let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: text)
+        
+        //swift 2 make change http://stackoverflow.com/questions/31002288/swift-2-immutable-value-x-is-never-used-consider-replacing-with
+        _ = oldText.stringByReplacingCharactersInRange(range, withString: text)
         textView.textColor = UIColor.blackColor()
         
         return true

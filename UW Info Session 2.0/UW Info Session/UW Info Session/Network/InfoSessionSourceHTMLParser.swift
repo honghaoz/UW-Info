@@ -38,7 +38,7 @@ struct InfoSessionSourceHTMLParser {
             var trSessionGroups = [[JiNode]]()
             var trSessionGroup: [JiNode]?
             for tr in tableNode {
-                if var tdContent = tr.firstChildWithName("td")?.content {
+                if let tdContent = tr.firstChildWithName("td")?.content {
                     if tdContent.hasPrefix("\(kEmployer):") {
                         if let trSessionGroup = trSessionGroup { trSessionGroups.append(trSessionGroup) }
                         trSessionGroup = [tr]
@@ -50,7 +50,7 @@ struct InfoSessionSourceHTMLParser {
             
             // Process each session group to a dictionary
             let json = JSON(trSessionGroups.map { self.processTrSessionGroupToDict($0) })
-//            log.debug(json)
+            log.debug(json)
             
             Info.shareInstance.finishParsing = true
         }
@@ -61,7 +61,7 @@ struct InfoSessionSourceHTMLParser {
         var unit = InfoSessionUnit()
         
         var webSiteIndex: Int?
-        for (index, tr) in enumerate(trSession) {
+        for (index, tr) in trSession.enumerate() {
             if let firstString = tr.firstChild?.content?.trimmed() where firstString.hasPrefix("\(kEmployer):") {
                 let secondString = tr.firstChild?.nextSibling?.content?.trimmed()
                 resultUnit.append([kEmployer: secondString ?? "null"])
@@ -90,8 +90,8 @@ struct InfoSessionSourceHTMLParser {
                 if let rawContent = tr.xPath("./td/i").first?.rawContent?.replaceMatches("<(i|/i)>", withString: "", ignoreCase: false) {
                     let components = rawContent.componentsSeparatedByString("<br>")
                     if components.count == 3 {
-                        let levelString = (components[0].hasPrefix("For ") ? components[0].stringByReplacingOccurrencesOfString("For ", withString: "", options: NSStringCompareOptions(0), range: nil) : components[0]).trimmed()
-                        let studentString = components[1].replaceMatches(", ", withString: ",", ignoreCase: true)?.stringByReplacingOccurrencesOfString(",", withString: ", ", options: NSStringCompareOptions(0), range: nil).trimmed() ?? ""
+                        let levelString = (components[0].hasPrefix("For ") ? components[0].stringByReplacingOccurrencesOfString("For ", withString: "", options: NSStringCompareOptions(rawValue: 0), range: nil) : components[0]).trimmed()
+                        let studentString = components[1].replaceMatches(", ", withString: ",", ignoreCase: true)?.stringByReplacingOccurrencesOfString(",", withString: ", ", options: NSStringCompareOptions(rawValue: 0), range: nil).trimmed() ?? ""
                         let programString = components[2].trimmed()
                         resultUnit.append([kAudience: "\(levelString) \(studentString)".trimmed()])
                         resultUnit.append([kProgram: programString])
@@ -106,7 +106,7 @@ struct InfoSessionSourceHTMLParser {
             } else if let webSiteIndex = webSiteIndex where index == webSiteIndex + 2 {
                 // Description
                 if let rawContent = tr.xPath("./td/i").first?.rawContent?.replaceMatches("<(i|/i)>", withString: "", ignoreCase: false) {
-                    let removedBrString = rawContent.stringByReplacingOccurrencesOfString("<br>", withString: "\n", options: NSStringCompareOptions(0), range: nil)
+                    let removedBrString = rawContent.stringByReplacingOccurrencesOfString("<br>", withString: "\n", options: NSStringCompareOptions(rawValue: 0), range: nil)
                     resultUnit.append([kDescription: removedBrString])
                     unit.description = removedBrString
                 } else {

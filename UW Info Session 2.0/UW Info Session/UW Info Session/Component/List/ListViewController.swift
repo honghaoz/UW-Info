@@ -24,7 +24,7 @@ class ListViewController: BaseViewController {
         super.viewDidLoad()
         Locator.clinet.updateFromSourceURLForYear(2015, month: .Sep){
             (result: Bool) in
-            println("got back: \(result)")
+            print("got back: \(result)")
             
             self.MonthlyInfoSessions = Info.shareInstance.InfoSessions
             
@@ -76,13 +76,11 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController: UITableViewDelegate {
     // MARK: - Rows
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
         if Info.shareInstance.finishParsing {
             return ListCell.estimatedRowHeight()
         }else {
             return LoadingCell.estimatedRowHeight()
         }
-        
     }
     
     // MARK: - Selections
@@ -99,11 +97,13 @@ extension ListViewController: UITableViewDelegate {
 
 }
 
-extension ListViewController: Analytics {
+extension ListViewController{
     override func screenName() -> String? {
         return "List View"
     }
 }
+
+//get redundant to conform protocol error message, if a subclass declares conformance to a protocol which is already inherited from a superclass.
 
 
 

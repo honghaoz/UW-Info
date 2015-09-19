@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -11,10 +11,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="njj-hX-m9j" id="iuB-lH-bmL">
+                <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yL-bT-vB8">
-                        <rect key="frame" x="8" y="11" width="36" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Alert" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yL-bT-vB8">
+                        <rect key="frame" x="8" y="11" width="48" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -30,9 +31,15 @@
                     <constraint firstItem="2yL-bT-vB8" firstAttribute="leading" secondItem="iuB-lH-bmL" secondAttribute="leadingMargin" id="Tya-u2-Fl8"/>
                     <constraint firstAttribute="centerY" secondItem="zqr-ng-PF1" secondAttribute="centerY" id="YnK-Pc-ftW"/>
                     <constraint firstAttribute="trailingMargin" secondItem="zqr-ng-PF1" secondAttribute="trailing" constant="7" id="dGj-p2-c0S"/>
+                    <constraint firstItem="zqr-ng-PF1" firstAttribute="leading" secondItem="2yL-bT-vB8" secondAttribute="trailing" constant="66" id="dzN-Yu-rE2"/>
                     <constraint firstItem="zqr-ng-PF1" firstAttribute="leading" secondItem="2yL-bT-vB8" secondAttribute="trailing" constant="78" id="j0J-4c-PL3"/>
                     <constraint firstAttribute="centerY" secondItem="2yL-bT-vB8" secondAttribute="centerY" id="m2n-jL-PdP"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="j0J-4c-PL3"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <point key="canvasLocation" x="155" y="336"/>
         </tableViewCell>

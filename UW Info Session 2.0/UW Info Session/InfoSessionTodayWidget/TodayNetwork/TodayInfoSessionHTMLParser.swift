@@ -22,7 +22,7 @@ struct TodayInfoSessionHTMLParser {
 
         let doc: Ji! = Ji(htmlString: string)
         if doc == nil {
-            println("Setup Ji doc failed")
+            print("Setup Ji doc failed")
         }
         
         let nodes = doc.xPath("//*[@id='tableform']")
@@ -32,7 +32,7 @@ struct TodayInfoSessionHTMLParser {
             var trSessionGroups = [[JiNode]]()
             var trSessionGroup: [JiNode]?
             for tr in tableNode {
-                if var tdContent = tr.firstChildWithName("td")?.content {
+                if let tdContent = tr.firstChildWithName("td")?.content {
                     if tdContent.hasPrefix("\(kEmployer):") {
                         if let trSessionGroup = trSessionGroup { trSessionGroups.append(trSessionGroup) }
                         trSessionGroup = [tr]
@@ -43,7 +43,7 @@ struct TodayInfoSessionHTMLParser {
             }
             
             // Process each session group to a dictionary
-            let json = JSON(trSessionGroups.map { self.processTrSessionGroupToDict($0) })
+            _ = JSON(trSessionGroups.map { self.processTrSessionGroupToDict($0) })
             //            log.debug(json)
             
             TodayInfoSession.shareInstance.finishParsing = true
@@ -59,7 +59,7 @@ struct TodayInfoSessionHTMLParser {
         infoSessionDateFormat.dateFormat = "MMMM d, yyyy"
         let todayDate = infoSessionDateFormat.stringFromDate(date)
         
-        for (index, tr) in enumerate(trSession) {
+        for (_, tr) in trSession.enumerate() {
             if let firstString = tr.firstChild?.content?.trimmed() where firstString.hasPrefix("\(kEmployer):") {
                 let secondString = tr.firstChild?.nextSibling?.content?.trimmed()
                 resultUnit.append([kEmployer: secondString ?? "null"])

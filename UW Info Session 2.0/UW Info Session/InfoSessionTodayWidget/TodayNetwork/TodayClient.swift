@@ -32,14 +32,17 @@ class TodayClient {
     
     func updateFromSourceURLForToday(year: Int, month: Month, completion: (result: Bool) -> Void) {
         let sourceURL = String(format: infoSessionSourceURL, year, month.rawValue)
-        println("Requesting: \(sourceURL)")
+        print("Requesting: \(sourceURL)")
         
-        Alamofire.request(.GET, sourceURL).responseString {[unowned self] (request, response, string, error) -> Void in
-            if let string = string {
-                println("Get content successfully!")
+        Alamofire.request(.GET, sourceURL).responseString {[unowned self] (request, response, String) -> Void in
+
+            switch(String){
+            case .Success(let string):
+                print("Get content successfully!")
                 self.parser.parserHTMLString(string)
-            } else {
-                println("Get content failed!")
+            case .Failure( _, _):
+                print("Get content failed!")
+                
             }
             completion(result: TodayInfoSession.shareInstance.finishParsing)
         }

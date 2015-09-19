@@ -9,10 +9,11 @@ target 'UW Info Session' do
 pod 'ChouTi', :path => '../../Submodules/ChouTi/'
 
 # Utilities
-pod 'Ji','~> 1.1'
-pod 'Alamofire', '~> 1.3'
-pod 'SwiftyJSON', '~> 2.2.1'
-pod 'Loggerithm'
+pod 'Ji', '~> 1.1.2'
+pod 'Alamofire', '~> 2.0'
+pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+pod 'Loggerithm', '~> 1.3'
+pod 'GoogleMaps'
 
 # Analytics
 pod 'Google/Analytics'
@@ -25,10 +26,10 @@ end
 
 target 'InfoSessionTodayWidget' do
     
-    pod 'Ji','~> 1.1'
-    pod 'Alamofire', '~> 1.3'
-    pod 'SwiftyJSON', '~> 2.2.1'
-    pod 'Loggerithm'
+    pod 'Ji', '~> 1.1.2'
+    pod 'Alamofire', '~> 2.0'
+    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+    pod 'Loggerithm', '~> 1.3'
 
 end
 

@@ -16,7 +16,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var todayInfoSessionContent: UILabel!
     @IBOutlet weak var todaySummary: UILabel!
    
-    var isTodayDetailVisible = true
+    var isTodayDetailVisible = false
     
     var todayClient = TodayClient()
     var todayInfoSessions = [InfoSessionUnit()]
@@ -25,23 +25,20 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
-        todayDetailHeight.constant = 100
-        self.preferredContentSize = CGSizeMake(0, 150)
+        todayDetailHeight.constant = 0
+        self.preferredContentSize = CGSizeMake(0, 50)
         todaySummary.text = "Loading ..."
         
         todayClient.updateFromSourceURLForToday(2015, month: .Sep){
             (result: Bool) in
-            println("got back: \(result)")
+            print("got back: \(result)")
             
             self.todayInfoSessions = TodayInfoSession.shareInstance.InfoSessions
-            var sum = self.todayInfoSessions.count
+            let sum = self.todayInfoSessions.count
             
             if sum == 0{
                 self.todaySummary.text = "No Info Session Today"
-                self.preferredContentSize = CGSizeMake(0, 50)
             }else {
-                let transform = CGAffineTransformMakeRotation(CGFloat(180.0 * M_PI/180.0))
-                self.showDetailButton.transform = transform
                 if sum == 1 {
                     self.todaySummary.text = "There is 1 Info Session today"
                 }else {
@@ -51,7 +48,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 for info in self.todayInfoSessions {
                     self.todayString = self.todayString + info.employer + ",  "
                 }
-                self.todayString = self.todayString + "in campus."
+                
+                if sum == 1 {
+                    self.todayString = self.todayString + "is in campus."
+                }else {
+                    self.todayString = self.todayString + "are in campus."
+                }
+                
                 self.todayInfoSessionContent.text = self.todayString
             }
         }
@@ -79,7 +82,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
+    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
         // Perform any setup necessary in order to update the view.
         
         // If an error is encountered, use NCUpdateResult.Failed

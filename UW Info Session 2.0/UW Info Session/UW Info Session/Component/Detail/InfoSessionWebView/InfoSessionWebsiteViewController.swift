@@ -23,7 +23,7 @@ class InfoSessionWebsiteViewController: UIViewController, WKNavigationDelegate {
     
     required init(coder aDecoder: NSCoder) {
         self.webView = WKWebView(frame: CGRectZero)
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
         self.webView.navigationDelegate = self
     }
 
@@ -40,7 +40,7 @@ class InfoSessionWebsiteViewController: UIViewController, WKNavigationDelegate {
         // autolayout for web view
         view.insertSubview(webView, belowSubview: progressView)
         
-        webView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        webView.translatesAutoresizingMaskIntoConstraints = false
         // this line of code can disables auto-generated constraints so that tou can create your own
         let widthConstraint = NSLayoutConstraint(item: webView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: 0)
         view.addConstraint(widthConstraint)
@@ -84,16 +84,16 @@ class InfoSessionWebsiteViewController: UIViewController, WKNavigationDelegate {
     }
     
     //MARK: concerning the progress view
-    
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<()>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if (keyPath == "loading") {
             backwardBarButtonItem.enabled = webView.canGoBack
             forwardBarButtonItem.enabled = webView.canGoForward
-
+            
             UIApplication.sharedApplication().networkActivityIndicatorVisible = webView.loading
-            if (webView.loading == false) {
-                websiteURLString = webView.URL!.absoluteString
-            }
+            //            if (webView.loading == false) {
+            //                println(websiteURLString)
+            //                websiteURLString = webView.URL!.absoluteString
+            //            }
         } else if (keyPath == "estimatedProgress") {
             progressView.hidden = webView.estimatedProgress == 1
             progressView.setProgress(Float(webView.estimatedProgress), animated: true)

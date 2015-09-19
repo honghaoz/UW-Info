@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "541ECAAB3661B189ED3D05095D4E65A5868BC5A4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "541ECAAB3661B189ED3D05095D4E65A5868BC5A4" : 0,
+    "AB5814BF1313D2BB57451A561AAEFD4744C25E30" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "61BCA06A-EC43-45E8-B51C-AD20DA772677",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "541ECAAB3661B189ED3D05095D4E65A5868BC5A4" : "UW%20Info",
+    "AB5814BF1313D2BB57451A561AAEFD4744C25E30" : "UW%20InfoSubmodules\/ChouTi"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "UW Info Session",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "UW Info Session 2.0\/UW Info Session\/UW Info Session.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/honghaoz\/UW-Info.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "541ECAAB3661B189ED3D05095D4E65A5868BC5A4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/honghaoz\/ChouTi",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AB5814BF1313D2BB57451A561AAEFD4744C25E30"
+    }
+  ]
+}
