@@ -11,7 +11,6 @@ import UIKit
 class UWMapViewController: UIViewController {
     
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var addressLabel: UILabel!
 
     let locationManager = CLLocationManager()
     
@@ -26,53 +25,30 @@ class UWMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.mapView.layoutIfNeeded()
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
-        mapView.delegate = self
-        
         setDestinationMarker(infoSessionLocationString!)
-    }
-    
-    func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D) {
-        let geocoder = GMSGeocoder()
-
-        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
-            if let address = response?.firstResult() {
-                
-                let lines = address.lines as! [String]
-                self.addressLabel.text = lines.joinWithSeparator("\n")
-                
-                let labelHeight = self.addressLabel.intrinsicContentSize().height
-                self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0,
-                    bottom: labelHeight, right: 0)
-                
-                UIView.animateWithDuration(0.25) {
-                    self.view.layoutIfNeeded()
-                }
-//                print("locations = \(coordinate.latitude) \(coordinate.longitude)")
-            }
-        }
     }
     
     private func setDestinationMarker(location: String) {
         let marker = GMSMarker()
         
-        if (location.containsMatch("DC") != nil) {
+        if (location.containsMatch("DC") == true) {
             marker.position = infoSessionLoaction.DC
             marker.title = "DC"
             title = "DC"
-        }else if (location.containsMatch("Fed") != nil) {
+        }else if (location.containsMatch("Fed") == true) {
             marker.position = infoSessionLoaction.Fed
             marker.title = "Fed Hall"
             title = "Fed Hall"
-        }else if (location.containsMatch("TC") != nil) {
+        }else if (location.containsMatch("TC") == true) {
             marker.position = infoSessionLoaction.TC
             marker.title = "TC"
             title = "TC"
-        }else if (location.containsMatch("University Club") != nil) {
+        }else if (location.containsMatch("University Club") == true) {
             marker.position = infoSessionLoaction.UClub
             marker.title = "University Club"
             title = "University Club"
@@ -82,8 +58,8 @@ class UWMapViewController: UIViewController {
         marker.snippet = "UWaterloo"
         marker.map = mapView
     }
-
 }
+
 
 extension UWMapViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -96,17 +72,14 @@ extension UWMapViewController: CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+            self.mapView.layoutIfNeeded()
+            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 12, bearing: 0, viewingAngle: 0)
             locationManager.stopUpdatingLocation()
         }
     }
 }
 
-extension UWMapViewController: GMSMapViewDelegate {
-    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
-        reverseGeocodeCoordinate(position.target)
-    }
-}
+
 
 
 

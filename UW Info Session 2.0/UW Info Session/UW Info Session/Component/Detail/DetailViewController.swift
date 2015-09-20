@@ -211,7 +211,7 @@ extension DetailViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 && indexPath.row == 3 && infoSession?.location != "" {
             let mapVC = self.storyboard?.instantiateViewControllerWithIdentifier("UWMaplViewController") as! UWMapViewController
-            mapVC.infoSessionLocation = infoSession?.location
+            mapVC.infoSessionLocationString = infoSession?.location
             self.navigationController?.showViewController(mapVC, sender: mapVC)
         }
         
