@@ -11,6 +11,8 @@ import UIKit
 class ListViewController: BaseViewController {
     
     var MonthlyInfoSessions = [InfoSessionUnit()]
+    var leftInfoSessionNumber = 0
+    var date = NSDate()
     
 	@IBOutlet weak var listTableView: UITableView!
     
@@ -27,6 +29,7 @@ class ListViewController: BaseViewController {
             print("got back: \(result)")
             
             self.MonthlyInfoSessions = Info.shareInstance.InfoSessions
+            self.leftInfoSessionNumber = self.removePassedInfoSession()
             
             self.listTableView.reloadData()
         }
@@ -41,6 +44,31 @@ class ListViewController: BaseViewController {
 		
 		listTableView.rowHeight = UITableViewAutomaticDimension
 	}
+    
+    private func removePassedInfoSession() -> Int {
+        let sum = MonthlyInfoSessions.count
+        var sumPassed = 0
+        for info in MonthlyInfoSessions {
+            if info.employer == "No info sessions" || info.employer == "Info sessions begin" || info.employer == "Lectures begin" {
+                sumPassed = sumPassed + 1
+                MonthlyInfoSessions.removeAtIndex(0)
+            }
+        }
+        MonthlyInfoSessions.removeAtIndex(0)
+        return sum - sumPassed
+    }
+    
+    private func provideDateLine() -> Int {
+        let infoSessionDateFormatter = NSDateFormatter()
+        infoSessionDateFormatter.dateFormat = "d"
+        let dateLineString = infoSessionDateFormatter.stringFromDate(date)
+        let dateLine = Int(dateLineString)
+        return dateLine!
+    }
+    
+    private func extractNumFromDate() {
+        
+    }
 }
 
 extension ListViewController: UITableViewDataSource {
@@ -50,7 +78,7 @@ extension ListViewController: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if Info.shareInstance.finishParsing {
-            return MonthlyInfoSessions.count
+            return leftInfoSessionNumber
         }else {
             return 1
         }
@@ -58,7 +86,6 @@ extension ListViewController: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if Info.shareInstance.finishParsing {
-            
             let cell = tableView.dequeueReusableCellWithIdentifier(ListCell.identifier()) as! ListCell
             
             let InfoSession = MonthlyInfoSessions[indexPath.row]
@@ -71,6 +98,7 @@ extension ListViewController: UITableViewDataSource {
             return cell
         }
 	}
+
 }
 
 extension ListViewController: UITableViewDelegate {
@@ -103,7 +131,7 @@ extension ListViewController{
     }
 }
 
-//get redundant to conform protocol error message, if a subclass declares conformance to a protocol which is already inherited from a superclass.
+
 
 
 

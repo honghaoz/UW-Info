@@ -60,6 +60,7 @@ class RootViewController: BaseViewController {
         displayContentViewController(mySplitViewController)
         tabBarSelectedIndex = 0
         
+       
         // Test for core data
         let session = NSEntityDescription.entityForName("Session", inManagedObjectContext: Locator.managedObjectContext)
         let newSession = Session(entity: session!, insertIntoManagedObjectContext: Locator.managedObjectContext)

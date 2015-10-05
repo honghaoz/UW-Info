@@ -32,7 +32,7 @@ extension RSVPCell: TableViewInfo {
     }
     
     class func estimatedRowHeight() -> CGFloat {
-        return 60
+        return 44
     }
     
     class func registerInTableView(tableView: UITableView) {

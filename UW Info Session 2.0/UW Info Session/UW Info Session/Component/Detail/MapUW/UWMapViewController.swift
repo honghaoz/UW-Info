@@ -21,6 +21,7 @@ class UWMapViewController: UIViewController {
         static let TC = CLLocationCoordinate2DMake(43.469270804792, -80.5414594709873)
         static let Fed = CLLocationCoordinate2DMake(43.4731935543136, -80.5485197156668)
         static let UClub = CLLocationCoordinate2DMake(43.4722962253136, -80.5473452433944)
+        static let SLCPub = CLLocationCoordinate2DMake(43.471601, -80.545455)
     }
     
     override func viewDidLoad() {
@@ -52,6 +53,10 @@ class UWMapViewController: UIViewController {
             marker.position = infoSessionLoaction.UClub
             marker.title = "University Club"
             title = "University Club"
+        }else if (location.containsMatch("Bombshelter") == true) {
+            marker.position = infoSessionLoaction.SLCPub
+            marker.title = "(SLC)Bombshelter Pub"
+            title = "SLC Pub"
         }else {
             title = "Not in Campus, Tap Google😉"
         }
@@ -73,7 +78,7 @@ extension UWMapViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             self.mapView.layoutIfNeeded()
-            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 12, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 14, bearing: 0, viewingAngle: 0)
             locationManager.stopUpdatingLocation()
         }
     }

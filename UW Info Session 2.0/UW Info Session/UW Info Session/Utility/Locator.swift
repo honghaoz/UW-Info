@@ -84,4 +84,5 @@ class Locator {
             return NSManagedObjectContext()
         }
     }
+    
 }

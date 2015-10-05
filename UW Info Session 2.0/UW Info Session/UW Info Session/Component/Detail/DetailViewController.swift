@@ -34,9 +34,9 @@ class DetailViewController: BaseViewController, ProviderSwitchToDetailViewDelega
         detailTableView.delegate = self
         detailTableView.dataSource = self
         
-//        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
-//        view.addGestureRecognizer(tap)
-//        tap.cancelsTouchesInView = false 
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(tap)
+        tap.cancelsTouchesInView = false 
     }
     
     override func didReceiveMemoryWarning() {

@@ -16,6 +16,7 @@
 		BE0FEC861B9E84AB00A53303 /* InfoSessionWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FEC851B9E84AB00A53303 /* InfoSessionWebsiteViewController.swift */; };
 		BE172AE41BAC9BAA003CFD2C /* ExString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE172AE31BAC9BAA003CFD2C /* ExString.swift */; settings = {ASSET_TAGS = (); }; };
 		BE172AE61BAC9CAE003CFD2C /* ExSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE172AE51BAC9CAE003CFD2C /* ExSwift.swift */; settings = {ASSET_TAGS = (); }; };
+		BE2279841BC2CE58000C1273 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2279831BC2CE58000C1273 /* FavoritesViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		BEB679281BA65FA7007C079B /* TodayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB679271BA65FA7007C079B /* TodayClient.swift */; };
 		BEB6792A1BA661BA007C079B /* TodayInfoSessionHTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB679291BA661BA007C079B /* TodayInfoSessionHTMLParser.swift */; };
 		BEB6792D1BA664BF007C079B /* TrimStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB6792C1BA664BF007C079B /* TrimStringExtension.swift */; };
@@ -105,6 +106,7 @@
 		BE0FEC851B9E84AB00A53303 /* InfoSessionWebsiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoSessionWebsiteViewController.swift; sourceTree = "<group>"; };
 		BE172AE31BAC9BAA003CFD2C /* ExString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExString.swift; sourceTree = "<group>"; };
 		BE172AE51BAC9CAE003CFD2C /* ExSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExSwift.swift; sourceTree = "<group>"; };
+		BE2279831BC2CE58000C1273 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		BE8E45361BA7686C00A85A23 /* InfoSessionTodayWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = InfoSessionTodayWidget.entitlements; sourceTree = "<group>"; };
 		BE8E45371BA7687E00A85A23 /* UW Info Session.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "UW Info Session.entitlements"; sourceTree = "<group>"; };
 		BEB679271BA65FA7007C079B /* TodayClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayClient.swift; sourceTree = "<group>"; };
@@ -213,6 +215,21 @@
 			path = InfoSessionWebView;
 			sourceTree = "<group>";
 		};
+		BE2279811BC2CE34000C1273 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				BE2279831BC2CE58000C1273 /* FavoritesViewController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		BE2279821BC2CE3B000C1273 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		BEB679261BA65F87007C079B /* TodayNetwork */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,8 +305,10 @@
 				E43925FD1B7C536500616CDE /* BaseViewController.swift */,
 				E4F3B8441B798704006E1BF9 /* Root.storyboard */,
 				E4F3B8421B798704006E1BF9 /* RootViewController.swift */,
-				E4F3B8601B798A04006E1BF9 /* List */,
 				E4BF8BBC1B7A3F6A0016A61E /* Detail */,
+				E4F3B8601B798A04006E1BF9 /* List */,
+				BE2279811BC2CE34000C1273 /* Favorites */,
+				BE2279821BC2CE3B000C1273 /* Search */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -681,6 +700,7 @@
 			files = (
 				E43925F41B7C276500616CDE /* InfoSessionSourceHTMLParser.swift in Sources */,
 				E43926021B7C602700616CDE /* Analytics.swift in Sources */,
+				BE2279841BC2CE58000C1273 /* FavoritesViewController.swift in Sources */,
 				BEEC07D31B9D02F500321C8D /* NoteCell.swift in Sources */,
 				E4F3B8431B798704006E1BF9 /* RootViewController.swift in Sources */,
 				BEEC07DA1B9D1BDD00321C8D /* UWMapViewController.swift in Sources */,
