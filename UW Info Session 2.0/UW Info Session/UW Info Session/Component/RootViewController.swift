@@ -15,6 +15,10 @@ class RootViewController: BaseViewController {
     @IBOutlet weak var infoSessionsListBarItem: UITabBarItem!
     @IBOutlet weak var favoritesBarItem: UITabBarItem!
     @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var childView: UIView!
+    
+    var viewControllers: [UIViewController] = []
+    var activeController:UIViewController? = nil
     
     lazy var mySplitViewController: UISplitViewController = {
         var splitController = Locator.splitViewController
@@ -38,29 +42,23 @@ class RootViewController: BaseViewController {
     var listViewController: ListViewController { return Locator.listViewController }
     var detailNavigationController: UINavigationController { return Locator.detailNavigationController }
     var detailViewController: DetailViewController { return Locator.detailViewController }
-    
-    var tabBarSelectedIndex: Int = 0 {
-        didSet {
-            switch tabBarSelectedIndex {
-            case 0:
-                tabBar.selectedItem = infoSessionsListBarItem
-            case 1:
-                tabBar.selectedItem = favoritesBarItem
-            default:
-                break
-            }
-        }
-    }
-    
-    var currentSelectedViewController: UIViewController?
+    var favoritesNavigationController: UINavigationController { return Locator.favoritesNavigationController}
+    var favoritesViewController: FavoritesViewController {return Locator.favoritesViewController}
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        displayContentViewController(mySplitViewController)
-        tabBarSelectedIndex = 0
-        
+//        displayContentViewController(mySplitViewController)
+//        tabBarSelectedIndex = 0
        
+        //implement tab bar
+        self.childView.hidden = true
+        viewControllers = [mySplitViewController, favoritesViewController]
+        
+        self.tabBar.delegate = self
+        
+        self.tabBar(tabBar, didSelectItem: infoSessionsListBarItem)
+        
         // Test for core data
         let session = NSEntityDescription.entityForName("Session", inManagedObjectContext: Locator.managedObjectContext)
         let newSession = Session(entity: session!, insertIntoManagedObjectContext: Locator.managedObjectContext)
@@ -92,20 +90,45 @@ class RootViewController: BaseViewController {
         }
     }
     
-    func displayContentViewController(viewController: UIViewController) {
-        addChildViewController(viewController)
-        currentSelectedViewController = viewController
+    
+    //display and hide controller for tab bar controller 
+    func displayContentInTabBar(contentController:UIViewController) {
+        self.addChildViewController(contentController)
+        contentController.view.translatesAutoresizingMaskIntoConstraints = false
+        contentController.view.frame = self.childView.frame
+        self.view.insertSubview(contentController.view, belowSubview: tabBar)
         
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        view.insertSubview(viewController.view, belowSubview: tabBar)
+        NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: contentController.view, attribute: .Top, multiplier: 1.0, constant: 0.0).active = true
+        NSLayoutConstraint(item: view, attribute: .Leading, relatedBy: .Equal, toItem: contentController.view, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
+        NSLayoutConstraint(item: view, attribute: .Bottom, relatedBy: .Equal, toItem: contentController.view, attribute: .Bottom, multiplier: 1.0, constant: 0.0).active = true
+        NSLayoutConstraint(item: view, attribute: .Trailing, relatedBy: .Equal, toItem: contentController.view, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
         
-        // Full Size
-        NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: viewController.view, attribute: .Top, multiplier: 1.0, constant: 0.0).active = true
-        NSLayoutConstraint(item: view, attribute: .Leading, relatedBy: .Equal, toItem: viewController.view, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
-        NSLayoutConstraint(item: view, attribute: .Bottom, relatedBy: .Equal, toItem: viewController.view, attribute: .Bottom, multiplier: 1.0, constant: 0.0).active = true
-        NSLayoutConstraint(item: view, attribute: .Trailing, relatedBy: .Equal, toItem: viewController.view, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
-        
-        viewController.didMoveToParentViewController(self)
+        contentController.didMoveToParentViewController(self)
+        self.activeController = contentController
+    }
+    
+    func hideContentInTabBar(contentController:UIViewController) {
+        contentController.willMoveToParentViewController(nil)
+        contentController.view.removeFromSuperview()
+        contentController.removeFromParentViewController()
+    }
+    
+}
+
+extension RootViewController: UITabBarDelegate {
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        if let tempActiveController = activeController {
+            self.hideContentInTabBar(tempActiveController)
+        }
+        switch item.tag {
+        case 0:
+            self.displayContentInTabBar(viewControllers[0])
+        case 1:
+            
+            self.displayContentInTabBar(viewControllers[1])
+        default:
+            break;
+        }
     }
 }
 
@@ -117,7 +140,6 @@ extension RootViewController: UISplitViewControllerDelegate {
                 return detailViewController.shouldHide
             }
         }
-        
         return true
     }
     
@@ -125,3 +147,36 @@ extension RootViewController: UISplitViewControllerDelegate {
         return Locator.detailNavigationController
     }
 }
+
+
+//    //display controller for split view controller
+//
+//    func displayContentViewController(viewController: UIViewController) {
+//        addChildViewController(viewController)
+//        currentSelectedViewController = viewController
+//
+//        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+//        view.insertSubview(viewController.view, belowSubview: tabBar)
+//
+//        // Full Size
+//        NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: viewController.view, attribute: .Top, multiplier: 1.0, constant: 0.0).active = true
+//        NSLayoutConstraint(item: view, attribute: .Leading, relatedBy: .Equal, toItem: viewController.view, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
+//        NSLayoutConstraint(item: view, attribute: .Bottom, relatedBy: .Equal, toItem: viewController.view, attribute: .Bottom, multiplier: 1.0, constant: 0.0).active = true
+//        NSLayoutConstraint(item: view, attribute: .Trailing, relatedBy: .Equal, toItem: viewController.view, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
+//
+//        viewController.didMoveToParentViewController(self)
+//    }
+
+
+//    var tabBarSelectedIndex: Int = 0 {
+//        didSet {
+//            switch tabBarSelectedIndex {
+//            case 0:
+//                tabBar.selectedItem = infoSessionsListBarItem
+//            case 1:
+//                tabBar.selectedItem = favoritesBarItem
+//            default:
+//                break
+//            }
+//        }
+//    }

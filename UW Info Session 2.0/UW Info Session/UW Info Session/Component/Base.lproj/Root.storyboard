@@ -28,16 +28,26 @@
                                     <tabBarItem title="Favorites" id="il9-QP-yeg"/>
                                 </items>
                             </tabBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBJ-wF-wiR">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jQP-jd-4Xy" secondAttribute="bottom" id="8eY-cL-aaL"/>
+                            <constraint firstItem="lBJ-wF-wiR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="DHY-Mw-oaE"/>
+                            <constraint firstItem="lBJ-wF-wiR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="EOG-mF-y02"/>
+                            <constraint firstItem="jQP-jd-4Xy" firstAttribute="top" secondItem="lBJ-wF-wiR" secondAttribute="bottom" id="T7b-qh-sYy"/>
+                            <constraint firstAttribute="trailing" secondItem="lBJ-wF-wiR" secondAttribute="trailing" id="dsZ-Tk-HGJ"/>
                             <constraint firstItem="jQP-jd-4Xy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="p62-Bc-oQy"/>
                             <constraint firstAttribute="trailing" secondItem="jQP-jd-4Xy" secondAttribute="trailing" id="wSV-uR-cWT"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="childView" destination="lBJ-wF-wiR" id="LaR-Oh-VLw"/>
                         <outlet property="favoritesBarItem" destination="il9-QP-yeg" id="cNJ-2t-TFZ"/>
                         <outlet property="infoSessionsListBarItem" destination="3wo-of-nkS" id="Td9-Qc-jJM"/>
                         <outlet property="tabBar" destination="jQP-jd-4Xy" id="eiC-M8-CY8"/>
@@ -269,7 +279,7 @@
         <!--Navigation Controller-->
         <scene sceneID="kDc-we-rpB">
             <objects>
-                <navigationController storyboardIdentifier="FavoritesNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="TeP-oY-pr5" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FavoritesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="TeP-oY-pr5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aMt-fI-Th0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
