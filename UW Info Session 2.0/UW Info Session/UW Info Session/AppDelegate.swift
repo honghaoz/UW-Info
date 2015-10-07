@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //update according to http://stackoverflow.com/questions/32576974/swift-2-0-google-analytics-event-builder-error-nsmutabledictionary-is-not-co
         if DEBUG {
-            gai.logger.logLevel = GAILogLevel.Verbose
+            gai.logger.logLevel = GAILogLevel.None
             let eventTracker: NSObject = GAIDictionaryBuilder.createEventWithCategory("Application", action: "App Opens", label: "DEBUG", value: nil).build()
             gai.defaultTracker.send(eventTracker as! [NSObject : AnyObject])
         } else {

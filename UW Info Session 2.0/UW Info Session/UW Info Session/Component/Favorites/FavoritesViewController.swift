@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: BaseViewController {
 
     @IBOutlet weak var favoritesTableView: UITableView!
     
@@ -26,4 +26,10 @@ class FavoritesViewController: UIViewController {
 
     
 
+}
+
+extension FavoritesViewController {
+	override func screenName() -> String? {
+		return "Favorite View"
+	}
 }

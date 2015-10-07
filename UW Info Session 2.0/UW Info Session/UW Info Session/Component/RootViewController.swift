@@ -95,7 +95,6 @@ class RootViewController: BaseViewController {
     func displayContentInTabBar(contentController:UIViewController) {
         self.addChildViewController(contentController)
         contentController.view.translatesAutoresizingMaskIntoConstraints = false
-        contentController.view.frame = self.childView.frame
         self.view.insertSubview(contentController.view, belowSubview: tabBar)
         
         NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: contentController.view, attribute: .Top, multiplier: 1.0, constant: 0.0).active = true
@@ -117,14 +116,16 @@ class RootViewController: BaseViewController {
 
 extension RootViewController: UITabBarDelegate {
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        if let tempActiveController = activeController {
-            self.hideContentInTabBar(tempActiveController)
+        if let activeController = activeController {
+            self.hideContentInTabBar(activeController)
         }
-        switch item.tag {
+        
+        guard let items = tabBar.items, let selectedIndex = items.indexOf(item) else { return }
+
+        switch selectedIndex {
         case 0:
             self.displayContentInTabBar(viewControllers[0])
         case 1:
-            
             self.displayContentInTabBar(viewControllers[1])
         default:
             break;
