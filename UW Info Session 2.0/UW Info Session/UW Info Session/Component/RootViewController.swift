@@ -45,20 +45,24 @@ class RootViewController: BaseViewController {
     var favoritesNavigationController: UINavigationController { return Locator.favoritesNavigationController}
     var favoritesViewController: FavoritesViewController {return Locator.favoritesViewController}
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //implement tab bar
+        self.childView.hidden = true
+        viewControllers = [mySplitViewController, favoritesNavigationController]
+        
+        self.tabBar.delegate = self
+        
+        self.tabBar(tabBar, didSelectItem: infoSessionsListBarItem)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        displayContentViewController(mySplitViewController)
 //        tabBarSelectedIndex = 0
-       
-        //implement tab bar
-        self.childView.hidden = true
-        viewControllers = [mySplitViewController, favoritesViewController]
-        
-        self.tabBar.delegate = self
-        
-        self.tabBar(tabBar, didSelectItem: infoSessionsListBarItem)
-        
+    
         // Test for core data
         let session = NSEntityDescription.entityForName("Session", inManagedObjectContext: Locator.managedObjectContext)
         let newSession = Session(entity: session!, insertIntoManagedObjectContext: Locator.managedObjectContext)
@@ -94,8 +98,9 @@ class RootViewController: BaseViewController {
     //display and hide controller for tab bar controller 
     func displayContentInTabBar(contentController:UIViewController) {
         self.addChildViewController(contentController)
+        self.activeController = contentController
         contentController.view.translatesAutoresizingMaskIntoConstraints = false
-        contentController.view.frame = self.childView.frame
+
         self.view.insertSubview(contentController.view, belowSubview: tabBar)
         
         NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: contentController.view, attribute: .Top, multiplier: 1.0, constant: 0.0).active = true
@@ -104,7 +109,7 @@ class RootViewController: BaseViewController {
         NSLayoutConstraint(item: view, attribute: .Trailing, relatedBy: .Equal, toItem: contentController.view, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
         
         contentController.didMoveToParentViewController(self)
-        self.activeController = contentController
+        
     }
     
     func hideContentInTabBar(contentController:UIViewController) {
@@ -149,34 +154,3 @@ extension RootViewController: UISplitViewControllerDelegate {
 }
 
 
-//    //display controller for split view controller
-//
-//    func displayContentViewController(viewController: UIViewController) {
-//        addChildViewController(viewController)
-//        currentSelectedViewController = viewController
-//
-//        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-//        view.insertSubview(viewController.view, belowSubview: tabBar)
-//
-//        // Full Size
-//        NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: viewController.view, attribute: .Top, multiplier: 1.0, constant: 0.0).active = true
-//        NSLayoutConstraint(item: view, attribute: .Leading, relatedBy: .Equal, toItem: viewController.view, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
-//        NSLayoutConstraint(item: view, attribute: .Bottom, relatedBy: .Equal, toItem: viewController.view, attribute: .Bottom, multiplier: 1.0, constant: 0.0).active = true
-//        NSLayoutConstraint(item: view, attribute: .Trailing, relatedBy: .Equal, toItem: viewController.view, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
-//
-//        viewController.didMoveToParentViewController(self)
-//    }
-
-
-//    var tabBarSelectedIndex: Int = 0 {
-//        didSet {
-//            switch tabBarSelectedIndex {
-//            case 0:
-//                tabBar.selectedItem = infoSessionsListBarItem
-//            case 1:
-//                tabBar.selectedItem = favoritesBarItem
-//            default:
-//                break
-//            }
-//        }
-//    }

@@ -25,7 +25,7 @@
                                 </constraints>
                                 <items>
                                     <tabBarItem title="Info Sessions" id="3wo-of-nkS" userLabel="Info Sessions"/>
-                                    <tabBarItem title="Favorites" id="il9-QP-yeg"/>
+                                    <tabBarItem tag="1" title="Favorites" id="il9-QP-yeg"/>
                                 </items>
                             </tabBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBJ-wF-wiR">
