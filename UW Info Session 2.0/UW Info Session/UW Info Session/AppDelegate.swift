@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //update according to http://stackoverflow.com/questions/32576974/swift-2-0-google-analytics-event-builder-error-nsmutabledictionary-is-not-co
         if DEBUG {
-            gai.logger.logLevel = GAILogLevel.Verbose
+            gai.logger.logLevel = GAILogLevel.None
             let eventTracker: NSObject = GAIDictionaryBuilder.createEventWithCategory("Application", action: "App Opens", label: "DEBUG", value: nil).build()
             gai.defaultTracker.send(eventTracker as! [NSObject : AnyObject])
         } else {
@@ -125,10 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var managedObjectContext: NSManagedObjectContext? = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
-        if coordinator == nil {
-            return nil
-        }
-        var managedObjectContext = NSManagedObjectContext()
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()

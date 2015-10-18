@@ -103,7 +103,7 @@ class Locator {
         } else {
             log.error("managedObjectContext is nil")
             assertionFailure("")
-            return NSManagedObjectContext()
+            return NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.PrivateQueueConcurrencyType)
         }
     }
     
