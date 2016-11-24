@@ -14,12 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    let googleMapsApiKey = "AIzaSyCEnP6LeL0QvrHeYfk8jaGx4io2GPZGRzk"
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        GMSServices.provideAPIKey(googleMapsApiKey)
 
         setupAnalytics(application, launchOptions: launchOptions)
         
-//        log.logLevel = .Off
         log.showDateTime = false
         log.showLogLevel = false
         log.showFileName = false
@@ -36,16 +38,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
         // Configure GAI options.
-        var gai = GAI.sharedInstance()
+        let gai = GAI.sharedInstance()
         gai.trackUncaughtExceptions = true  // report uncaught exceptions
         gai.dispatchInterval = 10
         
+        //update according to http://stackoverflow.com/questions/32576974/swift-2-0-google-analytics-event-builder-error-nsmutabledictionary-is-not-co
         if DEBUG {
-            gai.logger.logLevel = GAILogLevel.Verbose
-            gai.defaultTracker.send(GAIDictionaryBuilder.createEventWithCategory("Application", action: "App Opens", label: "DEBUG", value: nil).build() as [NSObject : AnyObject])
+            gai.logger.logLevel = GAILogLevel.None
+            let eventTracker: NSObject = GAIDictionaryBuilder.createEventWithCategory("Application", action: "App Opens", label: "DEBUG", value: nil).build()
+            gai.defaultTracker.send(eventTracker as! [NSObject : AnyObject])
         } else {
             gai.logger.logLevel = GAILogLevel.None
-            gai.defaultTracker.send(GAIDictionaryBuilder.createEventWithCategory("Application", action: "App Opens", label: "RELEASE", value: nil).build() as [NSObject : AnyObject])
+            let eventTracker: NSObject = GAIDictionaryBuilder.createEventWithCategory("Application", action: "App Opens", label: "RELEASE", value: nil).build()
+            gai.defaultTracker.send(eventTracker as! [NSObject : AnyObject])
         }
     }
     
@@ -78,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.honghaoz.UW_Info_Session" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as! NSURL
+        return urls[urls.count-1]
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -94,18 +99,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("UW_Info_Session.sqlite")
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
-        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+        
+// adding error handling code according to swift 2 changes
+// according http://stackoverflow.com/questions/30823072/swift-2-0-migration-errors
+        
+        do {
+            try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+        }catch var error as NSError {
             coordinator = nil
-            // Report any error we got.
             var dict = [String: AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
             error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            // Replace this with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog("Unresolved error \(error), \(error!.userInfo)")
+            
+            NSLog("Unresolved error \(error), \(error.userInfo)")
             abort()
+        }catch {
+            fatalError()
         }
         
         return coordinator
@@ -114,23 +125,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var managedObjectContext: NSManagedObjectContext? = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
-        if coordinator == nil {
-            return nil
-        }
-        var managedObjectContext = NSManagedObjectContext()
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
     
     // MARK: - Core Data Saving support
-    
+    // adding error handling code according to swift 2 changes
+    // according http://stackoverflow.com/questions/30729011/swift-2-migration-savecontext-in-appdelegate
     func saveContext () {
-        if let moc = self.managedObjectContext {
-            var error: NSError? = nil
-            if moc.hasChanges && !moc.save(&error) {
+        if managedObjectContext!.hasChanges {
+            do {
+                try managedObjectContext!.save()
+            } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog("Unresolved error \(error), \(error!.userInfo)")
+                let nserror = error as NSError
+                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
                 abort()
             }
         }

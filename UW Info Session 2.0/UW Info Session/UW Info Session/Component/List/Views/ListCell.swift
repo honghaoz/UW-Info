@@ -10,6 +10,11 @@ import UIKit
 
 class ListCell: UITableViewCell {
 	
+    @IBOutlet weak var employerName: UILabel!
+    @IBOutlet weak var date_time: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,6 +22,12 @@ class ListCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func configureCellForInfoSession(InfoSession: InfoSessionUnit) {
+        employerName.text = InfoSession.employer
+        date_time.text = "\(InfoSession.date) \(InfoSession.time)"
+        locationLabel.text = "\(InfoSession.location)"
     }
 }
 

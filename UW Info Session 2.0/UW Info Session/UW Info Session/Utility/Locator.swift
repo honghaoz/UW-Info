@@ -57,7 +57,7 @@ class Locator {
     private lazy var _detailNavigationController: UINavigationController = {
         var controller = UIViewController.viewControllerInStoryboard("Root", viewControllerName: "DetailNavigationController") as! UINavigationController
         return controller
-        }()
+    }()
     
     class var detailNavigationController: UINavigationController {
         return sharedInstance._detailNavigationController
@@ -72,7 +72,29 @@ class Locator {
         return sharedInstance._detailViewController
     }
     
+    // MARK: - Favorites View Controller
+    private lazy var _favoritesNavigationController: UINavigationController = {
+        var controller = UIViewController.viewControllerInStoryboard("Root", viewControllerName: "FavoritesNavigationController") as! UINavigationController
+        return controller
+        }()
+    
+    class var favoritesNavigationController: UINavigationController {
+        return sharedInstance._favoritesNavigationController
+    }
+    
+    private lazy var _favoritesViewController: FavoritesViewController = {
+        var controller = UIViewController.viewControllerInStoryboard("Root", viewControllerName: "FavoritesViewController") as! FavoritesViewController
+        return controller
+        }()
+    
+    class var favoritesViewController: FavoritesViewController {
+        return sharedInstance._favoritesViewController
+    }
+    
+    //MARK: app delegate
+    
     class var delegate: AppDelegate { return UIApplication.sharedApplication().delegate as! AppDelegate }
+
     
     // MARK: - Core Data
     class var managedObjectContext: NSManagedObjectContext {
@@ -81,7 +103,8 @@ class Locator {
         } else {
             log.error("managedObjectContext is nil")
             assertionFailure("")
-            return NSManagedObjectContext()
+            return NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.PrivateQueueConcurrencyType)
         }
     }
+    
 }
